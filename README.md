@@ -16,6 +16,44 @@ Currently I do not have the heated bed.
 
 At first, I want to figure out a working configuration for this printer without making any physical modifications to the actual printer. At some point, I may decide to do some upgrades to this printer (new stepper motors, hot end, extruder, heated bed, etc.) but that will all depend on how much time I have to devote to this project and if I feel its worth my time doing so. Hopefully you may find this helpful in your journey with this printer.
 
+## Klipper Calibration tidbits that helped me:
+
+- Config Checks Doc: https://www.klipper3d.org/Config_checks.html
+- Be sure to calibrate the "Z Endstop" (`Z_ENDSTOP_CALIBRATE` Command): https://www.klipper3d.org/Manual_Level.html
+- Recommend doing a PID Calibration for extruder:
+```
+G28
+PID_CALIBRATE HEATER=extruder TARGET=215
+```
+- Don't forget to do a bed screw level adjustment (`BED_SCREWS_ADJUST` Commend): https://www.klipper3d.org/Manual_Level.html#adjusting-bed-leveling-screws
+
+## Cura Settings (I'll add a doc with more on this in the future).
+
+Used EasyThreeD's guides to setting up Cura profile
+
+These are slicer settings to take note of:
+- Layer Height: 0.2
+- Initial layer height: 0.3
+- Line width: 0.4
+- Wall thickness: 0.8
+- Infill - Lines
+- Infill Density: 20%
+- Retraction: Enabled
+- Retraction Distance: 4.0 mm
+- Retraction Speed: 25 mm/s
+- Filament: PLA (I've only tested with Sunlu PLA so far)
+- print temp: 215C
+- Speed: 30 - 40 mm/s
+- Travel speed - 120 mm/s (might need to adjust this)
+- Print Acceleration: 500mm/s
+- Cooling - 100% (0% for first layer)
+- Slow Layers: 2
+- Z-Hop: Disabled for now
+
+## Known Issues
+
+Please see the [CHANGELOG.md](./klipper/CHANGELOG.md)
+
 ## License
 
 Apache 2.0 License: [See here for details](./LICENSE)
